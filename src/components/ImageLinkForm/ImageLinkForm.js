@@ -1,23 +1,40 @@
-import React from 'react';
-import './ImageLinkForm.css';
+import "./ImageLinkForm.css"
 
-const ImageLinkForm = ({ onInputChange, onButtonSubmit }) => {
+const ImageLinkForm = ({ onInputChange, onSubmit }) => {
+  const onFormSubmit = (event) => {
+    event.preventDefault()
+    onSubmit()
+  }
+
   return (
-    <div>
-      <p className='f3'>
-        {'This Magic Brain will detect faces in your pictures. Git it a try.'}
+    <form onSubmit={onFormSubmit} id="image-link-form">
+      <p className="f4 mt-6 text-white backdrop-blur-sm w-fit mx-auto">
+        {"This Magic Brain will detect faces in your pictures. Give it a try!"}
       </p>
-      <div className='center'>
-        <div className='form center pa4 br3 shadow-5'>
-          <input className='f4 pa2 w-70 center' type='tex' onChange={onInputChange}/>
+      <div
+        id="search-div"
+        className="sm:w-full md:w-3/5  mx-auto my-6 shadow-xl p-2 backdrop-blur-sm w-fit"
+      >
+        <div className="m-2 flex justify-center" autoComplete="off">
+          {/* Search Field */}
+          <input
+            id="search-field"
+            type="text"
+            placeholder="Copy image address here..."
+            className="p-2 mr-1 text-gray-600 w-3/4"
+            onChange={onInputChange}
+          />
+          {/* Detect Button */}
           <button
-            className='w-30 grow f4 link ph3 pv2 dib white bg-light-purple'
-            onClick={onButtonSubmit}
-          >Detect</button>
+            type="submit"
+            className="white pointer p-2 m-auto w-1/4 bg-blue-400 hover:text-white hover:bg-[#da59da] ease-in duration-200"
+          >
+            Detect
+          </button>
         </div>
       </div>
-    </div>
-  );
+    </form>
+  )
 }
 
-export default ImageLinkForm;
+export default ImageLinkForm
